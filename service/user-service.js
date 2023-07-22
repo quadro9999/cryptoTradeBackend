@@ -1,10 +1,12 @@
 const UserModel = require("../models/user-model");
+
 const bcrypt = require("bcrypt");
 const uuid = require("uuid");
 const mailService = require("./mail-service");
 const tokenService = require("./token-service");
 const UserDto = require("../dtos/user-dto");
 const ApiError = require("../exceptions/api-error");
+const depositModel = require("../models/deposit-model");
 
 class UserService {
   async registration(username, email, password) {
@@ -109,6 +111,24 @@ class UserService {
   async getAllUsers() {
     const users = await UserModel.find();
     return users;
+  }
+
+  async depositRequest(user, tokens, wallet, sum) {
+    let userData = user;
+
+    const depositRequest = await depositModel.create({
+      userID: userData._id,
+      username: userData.username,
+      balanceUSD: userData.balanceUSD,
+      balanceBUSD: userData.balanceBUSD,
+      balanceUSDT: userData.balanceUSDT,
+      balanceBTC: userData.balanceBTC,
+      sumToPay: sum,
+      chosedTokens: tokens,
+      walletNumber: wallet,
+    });
+
+    return depositRequest;
   }
 }
 

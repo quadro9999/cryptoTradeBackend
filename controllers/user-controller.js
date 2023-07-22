@@ -1,6 +1,8 @@
 const userService = require("../service/user-service");
 const { validationResult } = require("express-validator");
 const ApiError = require("../exceptions/api-error");
+const tokenService = require("../service/token-service");
+const UserModel = require("../models/user-model");
 
 class UserController {
   async registration(req, res, next) {
@@ -96,6 +98,25 @@ class UserController {
     try {
       const users = await userService.getAllUsers();
       return res.json(users);
+    } catch (e) {
+      next(e);
+    }
+  }
+
+  async depositRequest(req, res, next) {
+    try {
+      const authorizationHeader = req.headers.authorization;
+      const accessToken = authorizationHeader.split(" ")[1];
+      const userData = tokenService.validateAccessToken(accessToken);
+      const user = await UserModel.findById(userData.id);
+      const { tokens, wallet, sum } = req.body;
+      const request = await userService.depositRequest(
+        user,
+        tokens,
+        wallet,
+        sum
+      );
+      return res.json(request);
     } catch (e) {
       next(e);
     }
