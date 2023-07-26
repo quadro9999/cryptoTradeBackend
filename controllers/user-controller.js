@@ -121,6 +121,25 @@ class UserController {
       next(e);
     }
   }
+
+  async transferCoins(req, res, next) {
+    try {
+      const authorizationHeader = req.headers.authorization;
+      const accessToken = authorizationHeader.split(" ")[1];
+      const userData = tokenService.validateAccessToken(accessToken);
+      const user = await UserModel.findById(userData.id);
+      const { sum, coinFrom, coinTo } = req.body;
+      const finnalySum = await userService.transferCoins(
+        user,
+        sum,
+        coinFrom,
+        coinTo
+      );
+      return res.json(finnalySum);
+    } catch (e) {
+      next(e);
+    }
+  }
 }
 
 module.exports = new UserController();

@@ -21,7 +21,15 @@ router.get("/activate/:link", userController.activate);
 router.post("/cancelregistration", userController.cancelregistration);
 router.get("/users", authMiddleware, userController.getUsers);
 router.get("/checkAuth", authMiddleware, userController.checkAuth);
+
+// user functions
 router.post("/depositrequest", authMiddleware, userController.depositRequest);
+
+router.post(
+  "/user/transfercoins",
+  authMiddleware,
+  userController.transferCoins
+);
 
 // admin
 router.get(

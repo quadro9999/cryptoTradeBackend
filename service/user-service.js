@@ -4,6 +4,7 @@ const bcrypt = require("bcrypt");
 const uuid = require("uuid");
 const mailService = require("./mail-service");
 const tokenService = require("./token-service");
+const currencyService = require("./currency-service");
 const UserDto = require("../dtos/user-dto");
 const ApiError = require("../exceptions/api-error");
 const depositModel = require("../models/deposit-model");
@@ -87,26 +88,56 @@ class UserService {
     const accessToken = authorizationHeader.split(" ")[1];
     const userData = tokenService.validateAccessToken(accessToken);
     let deleteuser = await UserModel.findByIdAndRemove(userData.id);
-    console.log(deleteuser);
     return true;
   }
 
-  // async refresh(refreshToken) {
-  //   if (!refreshToken) {
-  //     throw ApiError.UnauthorizedError();
-  //   }
-  //   const userData = tokenService.validateRefreshToken(refreshToken);
-  //   const tokenFromDb = await tokenService.findToken(refreshToken);
-  //   if (!userData || !tokenFromDb) {
-  //     throw ApiError.UnauthorizedError();
-  //   }
-  //   const user = await UserModel.findById(userData.id);
-  //   const userDto = new UserDto(user);
-  //   const tokens = tokenService.generateTokens({ ...userDto });
+  async transferCoins(user, sum, coinFrom, coinTo) {
+    let currency = await currencyService.getCurrency();
+    let usdSum = 0;
+    let finnalySum = 0;
 
-  //   await tokenService.saveToken(userDto.id, tokens.refreshToken);
-  //   return { ...tokens, user: userDto };
-  // }
+    // transfer coin to USD
+    if (coinFrom == "BTC") {
+      if (user.balanceBTC <= sum) {
+        throw ApiError.BadRequest("Not enough BTC to transfer");
+      }
+      usdSum = sum * currency.BTC;
+      user.balanceBTC = user.balanceBTC - sum;
+    } else if (coinFrom == "USDT") {
+      if (user.balanceUSDT <= sum) {
+        throw ApiError.BadRequest("Not enough USDT to transfer");
+      }
+      usdSum = sum * currency.USDT;
+      user.balanceUSDT = user.balanceUSDT - sum;
+    } else if (coinFrom == "BUSD") {
+      if (user.balanceBUSD <= sum) {
+        throw ApiError.BadRequest("Not enough BUSD to transfer");
+      }
+      usdSum = sum * currency.BUSD;
+      user.balanceBUSD = user.balanceBUSD - sum;
+    } else {
+      throw ApiError.BadRequest("Choosed coinFrom not available");
+    }
+
+    // transfer USD to coin
+
+    if (coinTo == "BTC") {
+      finnalySum = usdSum / currency.BTC;
+      user.balanceBTC = user.balanceBTC + finnalySum;
+    } else if (coinTo == "USDT") {
+      finnalySum = usdSum / currency.USDT;
+      user.balanceUSDT = user.balanceUSDT + finnalySum;
+    } else if (coinTo == "BUSD") {
+      finnalySum = usdSum / currency.BUSD;
+      user.balanceBUSD = user.balanceBUSD + finnalySum;
+    } else {
+      throw ApiError.BadRequest("Choosed coinTo not available");
+    }
+
+    await user.save();
+
+    return { user };
+  }
 
   async getAllUsers() {
     const users = await UserModel.find();
