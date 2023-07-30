@@ -31,7 +31,7 @@ const start = async () => {
     currencyService.getCurrencyFromApi();
     setInterval(() => {
       currencyService.getCurrencyFromApi();
-    }, 300000);
+    }, 400000);
 
     app.listen(PORT, () => console.log(`Server started on PORT = ${PORT}`));
   } catch (e) {

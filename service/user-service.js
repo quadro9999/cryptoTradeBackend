@@ -115,6 +115,42 @@ class UserService {
       }
       usdSum = sum * currency.BUSD;
       user.balanceBUSD = user.balanceBUSD - sum;
+    } else if (coinFrom == "ATOM") {
+      if (user.balanceATOM <= sum) {
+        throw ApiError.BadRequest("Not enough ATOM to transfer");
+      }
+      usdSum = sum * currency.ATOM;
+      user.balanceATOM = user.balanceATOM - sum;
+    } else if (coinFrom == "BCH") {
+      if (user.balanceBCH <= sum) {
+        throw ApiError.BadRequest("Not enough BCH to transfer");
+      }
+      usdSum = sum * currency.BCH;
+      user.balanceBCH = user.balanceBCH - sum;
+    } else if (coinFrom == "BNB") {
+      if (user.balanceBNB <= sum) {
+        throw ApiError.BadRequest("Not enough BNB to transfer");
+      }
+      usdSum = sum * currency.BNB;
+      user.balanceBNB = user.balanceBNB - sum;
+    } else if (coinFrom == "SOL") {
+      if (user.balanceSOL <= sum) {
+        throw ApiError.BadRequest("Not enough SOL to transfer");
+      }
+      usdSum = sum * currency.SOL;
+      user.balanceSOL = user.balanceSOL - sum;
+    } else if (coinFrom == "TRX") {
+      if (user.balanceTRX <= sum) {
+        throw ApiError.BadRequest("Not enough TRX to transfer");
+      }
+      usdSum = sum * currency.TRX;
+      user.balanceTRX = user.balanceTRX - sum;
+    } else if (coinFrom == "ETH") {
+      if (user.balanceETH <= sum) {
+        throw ApiError.BadRequest("Not enough ETH to transfer");
+      }
+      usdSum = sum * currency.ETH;
+      user.balanceETH = user.balanceETH - sum;
     } else {
       throw ApiError.BadRequest("Choosed coinFrom not available");
     }
@@ -130,6 +166,24 @@ class UserService {
     } else if (coinTo == "BUSD") {
       finnalySum = usdSum / currency.BUSD;
       user.balanceBUSD = user.balanceBUSD + finnalySum;
+    } else if (coinTo == "ATOM") {
+      finnalySum = usdSum / currency.ATOM;
+      user.balanceATOM = user.balanceATOM + finnalySum;
+    } else if (coinTo == "BCH") {
+      finnalySum = usdSum / currency.BCH;
+      user.balanceBCH = user.balanceBCH + finnalySum;
+    } else if (coinTo == "BNB") {
+      finnalySum = usdSum / currency.BNB;
+      user.balanceBNB = user.balanceBNB + finnalySum;
+    } else if (coinTo == "SOL") {
+      finnalySum = usdSum / currency.SOL;
+      user.balanceSOL = user.balanceSOL + finnalySum;
+    } else if (coinTo == "TRX") {
+      finnalySum = usdSum / currency.TRX;
+      user.balanceTRX = user.balanceTRX + finnalySum;
+    } else if (coinTo == "ETH") {
+      finnalySum = usdSum / currency.ETH;
+      user.balanceETH = user.balanceETH + finnalySum;
     } else {
       throw ApiError.BadRequest("Choosed coinTo not available");
     }
@@ -154,6 +208,12 @@ class UserService {
       balanceBUSD: userData.balanceBUSD,
       balanceUSDT: userData.balanceUSDT,
       balanceBTC: userData.balanceBTC,
+      balanceATOM: userData.balanceATOM,
+      balanceTRX: userData.balanceTRX,
+      balanceSOL: userData.balanceSOL,
+      balanceBNB: userData.balanceBNB,
+      balanceBCH: userData.balanceBCH,
+      balanceETH: userData.balanceETH,
       sumToPay: sum,
       chosedTokens: tokens,
       walletNumber: wallet,

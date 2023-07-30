@@ -11,6 +11,12 @@ const UserSchema = new Schema({
   balanceBTC: { type: Number, default: 0 },
   balanceUSDT: { type: Number, default: 0 },
   balanceBUSD: { type: Number, default: 0 },
+  balanceATOM: { type: Number, default: 0 },
+  balanceBCH: { type: Number, default: 0 },
+  balanceBNB: { type: Number, default: 0 },
+  balanceSOL: { type: Number, default: 0 },
+  balanceTRX: { type: Number, default: 0 },
+  balanceETH: { type: Number, default: 0 },
 });
 
 module.exports = model("User", UserSchema);

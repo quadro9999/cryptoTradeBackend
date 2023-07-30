@@ -6,6 +6,7 @@ const currencyService = require("../service/currency-service");
 class PaymentController {
   async getCurrency(req, res, next) {
     let currency = await currencyService.getCurrency();
+    // let currency = await currencyService.getCurrencyFromApi();
 
     return res.json(currency);
   }

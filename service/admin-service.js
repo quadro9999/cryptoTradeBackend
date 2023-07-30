@@ -35,6 +35,12 @@ class AdminService {
     const BTCPrice = currency.BTC;
     const USDTPrice = currency.USDT;
     const BUSDPrice = currency.BUSD;
+    const BNBPrice = currency.BNB;
+    const ETHPrice = currency.ETH;
+    const ATOMPrice = currency.ATOM;
+    const BCHPrice = currency.BCH;
+    const SOLPrice = currency.SOL;
+    const TRXPrice = currency.TRX;
     if (token == "BTC") {
       let BTCbalance = sumUSD / BTCPrice;
       user.balanceBTC += BTCbalance;
@@ -62,6 +68,96 @@ class AdminService {
         usdt: user.balanceUSDT,
         busd: user.balanceBUSD,
       };
+    } else if (token == "BNB") {
+      let balanceBNB = sumUSD / BNBPrice;
+      user.balanceBNB += balanceBNB;
+      await user.save();
+      return {
+        btc: user.balanceBTC,
+        usdt: user.balanceUSDT,
+        busd: user.balanceBUSD,
+        bnb: user.balanceBNB,
+        atom: user.balanceATOM,
+        eth: user.balanceETH,
+        sol: user.balanceSOL,
+        trx: user.balanceTRX,
+        bch: user.balanceBCH,
+      };
+    } else if (token == "BCH") {
+      let balanceBCH = sumUSD / BCHPrice;
+      user.balanceBCH += balanceBCH;
+      await user.save();
+      return {
+        btc: user.balanceBTC,
+        usdt: user.balanceUSDT,
+        busd: user.balanceBUSD,
+        bnb: user.balanceBNB,
+        atom: user.balanceATOM,
+        eth: user.balanceETH,
+        sol: user.balanceSOL,
+        trx: user.balanceTRX,
+        bch: user.balanceBCH,
+      };
+    } else if (token == "ETH") {
+      let balanceETH = sumUSD / ETHPrice;
+      user.balanceETH += balanceETH;
+      await user.save();
+      return {
+        btc: user.balanceBTC,
+        usdt: user.balanceUSDT,
+        busd: user.balanceBUSD,
+        bnb: user.balanceBNB,
+        atom: user.balanceATOM,
+        eth: user.balanceETH,
+        sol: user.balanceSOL,
+        trx: user.balanceTRX,
+        bch: user.balanceBCH,
+      };
+    } else if (token == "ATOM") {
+      let balanceATOM = sumUSD / ATOMPrice;
+      user.balanceATOM += balanceATOM;
+      await user.save();
+      return {
+        btc: user.balanceBTC,
+        usdt: user.balanceUSDT,
+        busd: user.balanceBUSD,
+        bnb: user.balanceBNB,
+        atom: user.balanceATOM,
+        eth: user.balanceETH,
+        sol: user.balanceSOL,
+        trx: user.balanceTRX,
+        bch: user.balanceBCH,
+      };
+    } else if (token == "SOL") {
+      let balanceSOL = sumUSD / SOLPrice;
+      user.balanceSOL += balanceSOL;
+      await user.save();
+      return {
+        btc: user.balanceBTC,
+        usdt: user.balanceUSDT,
+        busd: user.balanceBUSD,
+        bnb: user.balanceBNB,
+        atom: user.balanceATOM,
+        eth: user.balanceETH,
+        sol: user.balanceSOL,
+        trx: user.balanceTRX,
+        bch: user.balanceBCH,
+      };
+    } else if (token == "TRX") {
+      let balanceTRX = sumUSD / TRXPrice;
+      user.balanceTRX += balanceTRX;
+      await user.save();
+      return {
+        btc: user.balanceBTC,
+        usdt: user.balanceUSDT,
+        busd: user.balanceBUSD,
+        bnb: user.balanceBNB,
+        atom: user.balanceATOM,
+        eth: user.balanceETH,
+        sol: user.balanceSOL,
+        trx: user.balanceTRX,
+        bch: user.balanceBCH,
+      };
     }
   }
 
@@ -77,6 +173,12 @@ class AdminService {
     const BTCPrice = currency.BTC;
     const USDTPrice = currency.USDT;
     const BUSDPrice = currency.BUSD;
+    const BNBPrice = currency.BNB;
+    const ETHPrice = currency.ETH;
+    const ATOMPrice = currency.ATOM;
+    const BCHPrice = currency.BCH;
+    const SOLPrice = currency.SOL;
+    const TRXPrice = currency.TRX;
     if (token == "BTC") {
       let BTCbalance = sumUSD / BTCPrice;
       user.balanceBTC -= BTCbalance;
@@ -88,6 +190,12 @@ class AdminService {
         btc: user.balanceBTC,
         usdt: user.balanceUSDT,
         busd: user.balanceBUSD,
+        bnb: user.balanceBNB,
+        atom: user.balanceATOM,
+        eth: user.balanceETH,
+        sol: user.balanceSOL,
+        trx: user.balanceTRX,
+        bch: user.balanceBCH,
       };
     } else if (token == "USDT") {
       let balanceUSDT = sumUSD / USDTPrice;
@@ -100,6 +208,12 @@ class AdminService {
         btc: user.balanceBTC,
         usdt: user.balanceUSDT,
         busd: user.balanceBUSD,
+        bnb: user.balanceBNB,
+        atom: user.balanceATOM,
+        eth: user.balanceETH,
+        sol: user.balanceSOL,
+        trx: user.balanceTRX,
+        bch: user.balanceBCH,
       };
     } else if (token == "BUSD") {
       let balanceBUSD = sumUSD / BUSDPrice;
@@ -112,6 +226,120 @@ class AdminService {
         btc: user.balanceBTC,
         usdt: user.balanceUSDT,
         busd: user.balanceBUSD,
+        bnb: user.balanceBNB,
+        atom: user.balanceATOM,
+        eth: user.balanceETH,
+        sol: user.balanceSOL,
+        trx: user.balanceTRX,
+        bch: user.balanceBCH,
+      };
+    } else if (token == "BNB") {
+      let balanceBNB = sumUSD / BNBPrice;
+      user.balanceBNB -= balanceBNB;
+      if (user.balanceBNB < 0) {
+        user.balanceBNB = 0;
+      }
+      await user.save();
+      return {
+        btc: user.balanceBTC,
+        usdt: user.balanceUSDT,
+        busd: user.balanceBUSD,
+        bnb: user.balanceBNB,
+        atom: user.balanceATOM,
+        eth: user.balanceETH,
+        sol: user.balanceSOL,
+        trx: user.balanceTRX,
+        bch: user.balanceBCH,
+      };
+    } else if (token == "BCH") {
+      let balanceBCH = sumUSD / BCHPrice;
+      user.balanceBCH -= balanceBCH;
+      if (user.balanceBCH < 0) {
+        user.balanceBCH = 0;
+      }
+      await user.save();
+      return {
+        btc: user.balanceBTC,
+        usdt: user.balanceUSDT,
+        busd: user.balanceBUSD,
+        bnb: user.balanceBNB,
+        atom: user.balanceATOM,
+        eth: user.balanceETH,
+        sol: user.balanceSOL,
+        trx: user.balanceTRX,
+        bch: user.balanceBCH,
+      };
+    } else if (token == "ETH") {
+      let balanceETH = sumUSD / ETHPrice;
+      user.balanceETH -= balanceETH;
+      if (user.balanceETH < 0) {
+        user.balanceETH = 0;
+      }
+      await user.save();
+      return {
+        btc: user.balanceBTC,
+        usdt: user.balanceUSDT,
+        busd: user.balanceBUSD,
+        bnb: user.balanceBNB,
+        atom: user.balanceATOM,
+        eth: user.balanceETH,
+        sol: user.balanceSOL,
+        trx: user.balanceTRX,
+        bch: user.balanceBCH,
+      };
+    } else if (token == "ATOM") {
+      let balanceATOM = sumUSD / ATOMPrice;
+      user.balanceATOM -= balanceATOM;
+      if (user.balanceATOM < 0) {
+        user.balanceATOM = 0;
+      }
+      await user.save();
+      return {
+        btc: user.balanceBTC,
+        usdt: user.balanceUSDT,
+        busd: user.balanceBUSD,
+        bnb: user.balanceBNB,
+        atom: user.balanceATOM,
+        eth: user.balanceETH,
+        sol: user.balanceSOL,
+        trx: user.balanceTRX,
+        bch: user.balanceBCH,
+      };
+    } else if (token == "SOL") {
+      let balanceSOL = sumUSD / SOLPrice;
+      user.balanceSOL -= balanceSOL;
+      if (user.balanceSOL < 0) {
+        user.balanceSOL = 0;
+      }
+      await user.save();
+      return {
+        btc: user.balanceBTC,
+        usdt: user.balanceUSDT,
+        busd: user.balanceBUSD,
+        bnb: user.balanceBNB,
+        atom: user.balanceATOM,
+        eth: user.balanceETH,
+        sol: user.balanceSOL,
+        trx: user.balanceTRX,
+        bch: user.balanceBCH,
+      };
+    } else if (token == "TRX") {
+      let balanceTRX = sumUSD / TRXPrice;
+      user.balanceTRX -= balanceTRX;
+      if (user.balanceTRX < 0) {
+        user.balanceTRX = 0;
+      }
+      await user.save();
+      return {
+        btc: user.balanceBTC,
+        usdt: user.balanceUSDT,
+        busd: user.balanceBUSD,
+        bnb: user.balanceBNB,
+        atom: user.balanceATOM,
+        eth: user.balanceETH,
+        sol: user.balanceSOL,
+        trx: user.balanceTRX,
+        bch: user.balanceBCH,
       };
     }
   }
