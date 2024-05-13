@@ -6,6 +6,7 @@ const UserSchema = new Schema({
   password: { type: String, required: true },
   isActivated: { type: Boolean, default: false },
   isAdmin: { type: Boolean, default: false },
+  verification: { type: Boolean, default: false },
   activationLink: { type: String },
   balanceUSD: { type: Number, default: 0 },
   balanceBTC: { type: Number, default: 0 },
