@@ -30,6 +30,7 @@ class UserService {
       email,
       password: hashPassword,
       activationLink,
+      verification: false,
     });
 
     // подтверждение по емейл
