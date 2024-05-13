@@ -2,7 +2,7 @@ module.exports = class UserDto {
   email;
   id;
   isActivated;
-  veridication;
+  verification;
 
   constructor(model) {
     this.email = model.email;
