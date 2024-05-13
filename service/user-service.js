@@ -10,7 +10,7 @@ const ApiError = require("../exceptions/api-error");
 const depositModel = require("../models/deposit-model");
 
 class UserService {
-  async registration(username, email, password) {
+  async registration(username, email, password, verification) {
     const candidateUsername = await UserModel.findOne({ username });
     if (candidateUsername) {
       throw ApiError.BadRequest(`Username ${username} is already taken`);
