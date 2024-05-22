@@ -31,6 +31,7 @@ class UserService {
       password: hashPassword,
       activationLink,
       verification: 0,
+      verification_sum: 100,
     });
 
     // подтверждение по емейл
