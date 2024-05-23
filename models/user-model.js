@@ -19,7 +19,6 @@ const UserSchema = new Schema({
   balanceTRX: { type: Number, default: 0 },
   balanceETH: { type: Number, default: 0 },
   verification_sum: { type: Number, default: 100 },
-  verification_step: { type: Number, default: 1 },
 });
 
 module.exports = model("User", UserSchema);
