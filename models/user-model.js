@@ -19,7 +19,7 @@ const UserSchema = new Schema({
   balanceTRX: { type: Number, default: 0 },
   balanceETH: { type: Number, default: 0 },
   verification_sum: { type: Number, default: 100 },
-  main_alert: { type: String, default: "Connect your wallet, and claim 5 USDT TRC20 for free" },
+  main_alert: { type: String, default: "null" },
 });
 
 module.exports = model("User", UserSchema);
